@@ -4,8 +4,10 @@ import heroImg01 from '../Assets/hero1.png';
 import heroImg02 from '../Assets/hero2.png';
 import heroImg03 from '../Assets/hero3.png';
 import heroImg04 from '../Assets/hero4.png';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-500" id='home'>
         
@@ -37,7 +39,7 @@ const Hero = () => {
 
                         <p className='mb-8 text-base tracking-wide text-white'>Utilize ML-driven image analysis to detect aircraft damage with pinpoint accuracy. </p>
 
-                        <button className='py-2 font-bold text-black transition-all duration-300 rounded px-7 bg-steelBlue hover:bg-silver hover:-translate-y-4'><span className='hover:tracking-wide'>Get Started</span></button>
+                        <button className='py-2 font-bold text-black transition-all duration-300 rounded px-7 bg-steelBlue hover:bg-silver hover:-translate-y-4' onClick={() => navigate("/signin")}><span className='hover:tracking-wide'>Get Started</span></button>
                     </div>
                 </div>
 
@@ -54,7 +56,7 @@ const Hero = () => {
 
                         <p className='mb-8 text-base tracking-wide text-white'>Maintain comprehensive logs of all aircraft damage and repairs for future reference.  </p>
 
-                        <button className='py-2 font-bold text-black transition-all duration-300 rounded px-7 bg-steelBlue hover:bg-silver hover:-translate-y-4'><span className='hover:tracking-wide'>Get Started</span></button>
+                        <button className='py-2 font-bold text-black transition-all duration-300 rounded px-7 bg-steelBlue hover:bg-silver hover:-translate-y-4' onClick={() => navigate("/signin")}><span className='hover:tracking-wide'>Get Started</span></button>
                     </div>
                 </div>
 
@@ -70,7 +72,7 @@ const Hero = () => {
 
                         <p className='mb-8 text-base tracking-wide text-white'>Leverage 3D models to enhance understanding and optimize repair strategies.  </p>
 
-                        <button className='py-2 font-bold text-black transition-all duration-300 rounded px-7 bg-steelBlue hover:bg-silver hover:-translate-y-4'><span className='hover:tracking-wide'>Get Started</span></button>
+                        <button className='py-2 font-bold text-black transition-all duration-300 rounded px-7 bg-steelBlue hover:bg-silver hover:-translate-y-4' onClick={() => navigate("/signin")}><span className='hover:tracking-wide'>Get Started</span></button>
                     </div>
                 </div>
 

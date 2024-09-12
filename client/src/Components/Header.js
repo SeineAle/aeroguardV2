@@ -3,6 +3,8 @@ import logo from '../Assets/logo.png';
 import { Link } from 'react-router-dom';  // Updated import
 import { FaAlignJustify, FaCircleXmark } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { isLoggedInState } from '../state';
 
 const Header = () => {
 
@@ -10,7 +12,7 @@ const Header = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
-
+    const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -60,14 +62,21 @@ const Header = () => {
                     </ul>
 
                     {/* buttons for large devices */}
-                    <div className='space-x-12 hidden lg:flex items-center'>
+                    {!isLoggedIn?<div className='space-x-12 hidden lg:flex items-center'>
 
                         <button className='hidden lg:flex items-center text-steelBlue hover:text-silver font-bold' onClick={() => navigate("/signin")}>Login</button>
 
                         <button className='bg-steelBlue text-black py-2 px-4 transition-all duration-300 rounded hover:bg-silver font-bold' onClick={() => navigate("/register")}>Register</button>
 
-                    </div> 
+                    </div> :
+                    <div className='space-x-12 hidden lg:flex items-center'>
 
+                        <button className='hidden lg:flex items-center text-steelBlue hover:text-silver font-bold' onClick={() => {localStorage.removeItem('authToken'); navigate("/")
+}}>LogOut</button>
+
+                        <button className='bg-steelBlue text-black py-2 px-4 transition-all duration-300 rounded hover:bg-silver font-bold' >Account</button>
+
+                    </div>}
                     {/* menu button for only mobile devices */}
                     <div className='md:hidden'>
                         <button 

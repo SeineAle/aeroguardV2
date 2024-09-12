@@ -1,5 +1,5 @@
 import React from 'react';
-import Accordian from './Accordian';
+import Accordian from '../Accordian';
 
 const FAQ = () => {
   return (
