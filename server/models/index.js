@@ -1,3 +1,4 @@
 import User from "./user.js";
-
-export {User};
+import Category from "./category.js";
+import Post from "./post.js";
+export {User, Post, Category};

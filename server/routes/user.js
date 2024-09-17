@@ -1,4 +1,5 @@
 import { userSigninSchema, userSignupSchema } from "../zodValidation/index.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 import { User } from "../models/index.js";
 import express from "express";
 import cors from "cors";
@@ -33,7 +34,7 @@ router.post("/signin", async (req, res) => {
         userId: dbUser.userId,
       };
       const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET_KEY);
-      res.status(200).json({ token: token, userDetails: dbUser });
+      res.status(200).json({ token: token });
   } catch (error) {
       console.error("Error processing request:", error);
       res.status(500).json({ message: "Internal server error" });
@@ -72,4 +73,44 @@ router.post("/signup", async (req, res) => {
     token: token,
   });
 });
+
+router.get('/:id', authMiddleware, async (req, res) => {
+  const userId = req.body.userId;
+
+  const dbUser = await User.findOne({ userId: userId });
+  if (!dbUser) {
+      return res.status(411).json({ message: "No such Account found with this username" });
+  }
+
+  const qUserId = req.params.id;
+
+  try {
+      const user = await User.findOne({userId: qUserId});
+
+      if (!user) {
+          return res.status(404).json({ message: "User not found" });
+      }
+
+      res.json(user);
+  } catch (error) {
+      res.status(500).json({ error: 'Server Error' });
+  }
+});
+
+router.get('/', authMiddleware, async (req, res) => {
+  const userId = req.body.userId
+
+  try {
+      const user = await User.findOne({userId: userId});
+
+      if (!user) {;
+          return res.status(404).json({ message: "User not found" });
+      }
+
+      res.json(user);
+  } catch (error) {
+      res.status(500).json({ error: 'Server Error' });
+  }
+});
+
 export default router;
