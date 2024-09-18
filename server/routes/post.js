@@ -128,14 +128,12 @@ router.get('/all', authMiddleware, async (req, res) => {
 });
 
 router.get('/filter', authMiddleware, async (req, res) => {
-    const userId = req.body.userId;
+    const { userId, categoryId = [], status = [], risk = [], page = 1, limit = 10 } = req.body;
 
     const dbUser = await User.findOne({ userId: userId });
     if (!dbUser) {
         return res.status(411).json({ message: "No such Account found with this username" });
     }
-
-    const { authorId, categoryId, status, risk, page = 1, limit = 10 } = req.query;
 
     const pageNum = parseInt(page);
     const limitNum = parseInt(limit);
@@ -145,20 +143,19 @@ router.get('/filter', authMiddleware, async (req, res) => {
     }
 
     let query = {};
-    if (categoryId) query.categoryId = categoryId;
-    if (status) query.status = status;
-    if (risk) query.risk = risk;
-    if (authorId) query.authorId = authorId;
+    if (categoryId.length > 0) query.categoryId = { $in: categoryId };
+    if (status.length > 0) query.status = { $in: status };
+    if (risk.length > 0) query.risk = { $in: risk };
 
     try {
         const posts = await Post.find(query)
-            .sort({ createdAt: -1 })             
-            .skip((pageNum - 1) * limitNum)      
-            .limit(limitNum);                    
+            .sort({ createdAt: -1 })
+            .skip((pageNum - 1) * limitNum)
+            .limit(limitNum);
 
         const total = await Post.countDocuments(query);
         const totalPages = Math.ceil(total / limitNum);
-  
+
         res.json({
             posts,
             totalPages,

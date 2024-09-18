@@ -74,7 +74,7 @@ router.post("/signup", async (req, res) => {
   });
 });
 
-router.get('/:id', authMiddleware, async (req, res) => {
+router.get('/:id', authMiddleware,  async (req, res) => {
   const userId = req.body.userId;
 
   const dbUser = await User.findOne({ userId: userId });
