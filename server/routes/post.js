@@ -127,7 +127,8 @@ router.get('/all', authMiddleware, async (req, res) => {
     }
 });
 
-router.get('/filter', authMiddleware, async (req, res) => {
+router.post('/filter', authMiddleware, async (req, res) => {
+    console.log(req.body);
     const { userId, categoryId = [], status = [], risk = [], page = 1, limit = 10 } = req.body;
 
     const dbUser = await User.findOne({ userId: userId });
