@@ -42,6 +42,7 @@ const SignIn = () => {
     try {
       const baseUrl = import.meta.env.VITE_API_URL;
       const response = await axios.post(`${baseUrl}api/v1/user/signin`, userData);
+      console.log(response);
       if (response.status === 200) {
         const { token } = response.data;
         localStorage.setItem('authToken', token);

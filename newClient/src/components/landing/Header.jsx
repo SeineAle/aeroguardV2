@@ -32,6 +32,7 @@ const Header = () => {
             window.removeEventListener('scroll', handleScroll);  // Clean up the listener correctly
         };
     }, []);  
+    
     const navItems = [
         {link: 'Damage Detection', path: '/damageDetection'},
         {link: 'Stress Point Analysis', path: '/stressPointAnalysis'},

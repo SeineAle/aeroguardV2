@@ -13,7 +13,6 @@ function App() {
       setIsLoggedIn(true);
     }else{
       setIsLoggedIn(false);
-      setUserData(false);
     }
   }, [setIsLoggedIn]);
 
@@ -25,7 +24,7 @@ function App() {
           <Route path='/signin' element={isLoggedIn?<Home/>:<SignIn />} />
           <Route path='/register' element={isLoggedIn?<Home/>:<Register />} />
           <Route path='/stressPointAnalysis' element={!isLoggedIn?<SignIn/>:<StressPointsAnalysis />} />
-          <Route path='/maintainanceLogs' element={!isLoggedIn?<SignIn/>:<MaintainanceLogs />} />
+          <Route path='/maintainanceLogs' element={<MaintainanceLogs />} />
           <Route path='/damageDetection' element={!isLoggedIn?<SignIn/>:<DamageDetection />} />
         </Routes>
       </BrowserRouter>

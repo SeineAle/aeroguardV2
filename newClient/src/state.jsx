@@ -10,3 +10,14 @@ export const userDataState = atom({
     default: {},          
   });
   
+export const filterState = atom({
+    key: 'filterState',
+    default: {
+      risk: [],
+      status: [],
+      category: [],
+      page: 1,   
+      limit: 10,
+    },
+});
+  
