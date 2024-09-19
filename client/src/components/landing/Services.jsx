@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Airbus from '../../assets/ClientLogoPNGs/Airbus.png'
-import LMT from '../../assets/ClientLogoPNGs/LMT.png';
-import Boieng from '../../assets/ClientLogoPNGs/Boeing.png';
-import Bombardier from '../../assets/ClientLogoPNGs/Bombardier.png';
-import Embraer from '../../assets/ClientLogoPNGs/Embraer.png'
+import Airbus from '../../assets/clientLogoPNGs/Airbus.png'
+import LMT from '../../assets/clientLogoPNGs/LMT.png';
+import Boieng from '../../assets/clientLogoPNGs/Boeing.png';
+import Bombardier from '../../assets/clientLogoPNGs/Bombardier.png';
+import Embraer from '../../assets/clientLogoPNGs/Embraer.png'
 
 const Services = () => {
 
